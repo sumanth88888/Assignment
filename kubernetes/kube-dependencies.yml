@@ -12,12 +12,6 @@
        name: docker
        state: started
 
-#   - name: disable SELinux
-#     command: setenforce 0
-
-#   - name: disable SELinux on reboot
-#     selinux:
-#       state: disabled
    - name: install APT Transport HTTPS
      apt:
        name: apt-transport-https
