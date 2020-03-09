@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+
+- import_playbook: playbook.yml
+- import_playbook: playbook_os.yml
+- import_playbook: kube-dependencies.yml
+- import_playbook: master.yml
+- import_playbook: workers.yml

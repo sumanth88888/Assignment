@@ -1,0 +1,47 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Update and upgrade packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 1
+    - name: Install latest version of apache
+      apt:
+        name=apache2
+        state=latest    
+    - name: Enable ufw access for SSH
+      ufw:
+        rule: allow
+        name: OpenSSH
+        state: enabled
+    - name: Restarting SSH service
+      service:
+        name: ssh
+        state: restarted
+    - name: Allow all access to port 80
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+    - name : Deny all access to port 53
+      ufw:
+        rule: deny
+        port: '53'
+    - name: Deny acces to 1.2.3.4 for port 80
+      ufw:
+        rule: deny
+        proto: tcp
+        port: 80
+        src: 1.2.3.4
+        comment: Block syslog
+    - name: Allow port range 6000-6100
+      ufw:
+        rule: allow
+        port: 60000:61000
+        proto: tcp
+    - name: Allow port 8080
+      ufw:
+        rule: allow
+        port: 8080

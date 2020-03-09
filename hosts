@@ -1,0 +1,7 @@
+[master]
+master anisble_host=3.21.52.244 ansible_user=ubuntu
+
+[worker]
+worker ansible_host=3.21.114.177 ansible_user=ubuntu
+
+
